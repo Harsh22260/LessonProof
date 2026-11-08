@@ -1,0 +1,197 @@
+version: 4
+checks:
+  - id: ACC-1
+    label: Nothing contradicts the facts
+    dimension: accuracy
+    kind: audit
+    criterion: No statement in the lesson contradicts the fact sheet or states a listed misconception as true.
+  - id: ACC-2
+    label: Every claim has a source
+    dimension: accuracy
+    kind: audit
+    criterion: Every factual statement about the topic is supported by the fact sheet. Clearly illustrative examples and analogies are exempt.
+  - id: ACC-3
+    label: No false promises
+    dimension: accuracy
+    kind: deterministic
+    criterion: The lesson makes no absolute promise about the technology.
+    params:
+      banned_phrases:
+        - always correct
+        - always accurate
+        - always right
+        - never wrong
+        - never makes mistakes
+        - never hallucinates
+        - never make mistakes
+        - 100% accurate
+        - 100% correct
+        - completely accurate
+        - completely removes
+        - eliminates hallucination
+        - eliminates all
+        - guarantees
+        - guaranteed
+  - id: ACC-4
+    label: No made-up statistics
+    dimension: accuracy
+    kind: deterministic
+    criterion: The lesson states no percentage or statistic outside the worked example, because the fact sheet provides none.
+    params:
+      exempt_role: example
+
+  - id: LANG-1
+    label: Easy reading level
+    dimension: beginner_language
+    kind: deterministic
+    criterion: Flesch-Kincaid grade of the teaching text is at or below the limit.
+    params:
+      max_grade: 8.0
+  - id: LANG-2
+    label: Short sentences
+    dimension: beginner_language
+    kind: deterministic
+    criterion: Average sentence length and longest sentence are within the limits.
+    params:
+      max_average_words: 15
+      max_sentence_words: 26
+  - id: LANG-3
+    label: Common words
+    dimension: beginner_language
+    kind: deterministic
+    criterion: Uncommon English words, outside the defined key words, are within the limit.
+    params:
+      zipf_threshold: 3.4
+      max_rare_share: 0.015
+  - id: LANG-4
+    label: Short paragraphs
+    dimension: beginner_language
+    kind: deterministic
+    criterion: No paragraph exceeds the sentence limit.
+    params:
+      max_paragraph_sentences: 5
+  - id: BEG-1
+    label: No background needed
+    dimension: beginner_language
+    kind: judge
+    evidence_on_pass: false
+    criterion: The lesson assumes no earlier knowledge of AI, programming, or mathematics. A reader who has finished 12th grade with no technical background can follow every step.
+  - id: BEG-2
+    label: Familiar examples
+    dimension: beginner_language
+    kind: judge
+    evidence_on_pass: true
+    criterion: The main analogies and examples come from everyday life that a young person in India knows, such as school, exams, libraries, railways, shops, or phones. They do not depend on foreign cultural knowledge.
+
+  - id: EX-1
+    label: A full worked example
+    dimension: examples
+    kind: judge
+    evidence_on_pass: true
+    criterion: The worked example applies the topic itself to one specific case from start to finish, using the steps the how section teaches. It shows the actual starting point, the actual content of every step, and the actual final result. An everyday story that never shows the topic's own steps fails, even if it is a good comparison.
+  - id: EX-2
+    label: Examples in each main part
+    dimension: examples
+    kind: judge
+    evidence_on_pass: true
+    criterion: The sections explaining what the topic is, why it matters, and how it works each give a concrete example or analogy. Each comparison makes its idea clearer and does not mislead. A section fails if it piles up comparisons that do not explain anything.
+
+  - id: JAR-1
+    label: Technical words are listed
+    dimension: clarity
+    kind: deterministic
+    criterion: Every technical term used in the teaching text appears in the key words list.
+    params:
+      jargon:
+        - algorithm
+        - api
+        - bert
+        - cosine similarity
+        - dense
+        - embedding
+        - gpt
+        - hallucination
+        - inference
+        - knowledge base
+        - large language model
+        - llm
+        - model weights
+        - neural
+        - nlp
+        - parameter
+        - pipeline
+        - prompt
+        - semantic
+        - token
+        - top-k
+        - transformer
+        - vector
+        - vector database
+  - id: JAR-2
+    label: Words explained when first used
+    dimension: clarity
+    kind: judge
+    evidence_on_pass: false
+    criterion: Every technical term is explained in plain words where it first appears, before the lesson relies on it. A definition that only appears in the key words list at the end does not count.
+  - id: JAR-3
+    label: Word list is short
+    dimension: clarity
+    kind: deterministic
+    criterion: The key words list is short enough to learn, and each definition is short.
+    params:
+      max_terms: 12
+      max_definition_words: 25
+  - id: JAR-4
+    label: Short forms are spelled out
+    dimension: clarity
+    kind: deterministic
+    criterion: Every abbreviation the lesson uses is spelled out in full in the lesson body.
+
+  - id: COV-1
+    label: All key points taught
+    dimension: coverage
+    kind: audit
+    criterion: Every listed key point is taught in the lesson body.
+  - id: COV-2
+    label: All parts present
+    dimension: coverage
+    kind: deterministic
+    criterion: The lesson has one section for each required role.
+    params:
+      required_roles: [what, why, how, example, limits, recap]
+  - id: COV-3
+    label: Self-check quiz
+    dimension: coverage
+    kind: deterministic
+    criterion: The lesson ends with enough self-check questions, each with an answer.
+    params:
+      min_questions: 3
+      max_questions: 6
+
+  - id: FLOW-1
+    label: Right order and length
+    dimension: flow
+    kind: deterministic
+    criterion: Sections follow the teaching order, and total length is within the limits.
+    params:
+      order: [intro, what, why, how, example, limits, recap]
+      min_words: 600
+      max_words: 1500
+  - id: FLOW-2
+    label: Ideas build step by step
+    dimension: flow
+    kind: judge
+    evidence_on_pass: false
+    criterion: Read the lesson in order, as a learner would. Each idea builds only on ideas already taught. A section fails if it uses a term or step before the lesson has explained it, or if it shows a full worked example before the teaching that example depends on. Each section also connects to the one before it.
+  - id: FLOW-3
+    label: Quiz is fair and correct
+    dimension: flow
+    kind: judge
+    evidence_on_pass: false
+    criterion: Check each quiz answer one at a time against the lesson. Every self-check question can be answered from the lesson alone, every given answer agrees with what the lesson teaches, and at least one question asks the learner to apply an idea and not only repeat a definition.
+  - id: FLOW-4
+    label: Summary adds nothing new
+    dimension: flow
+    kind: judge
+    evidence_on_pass: false
+    criterion: The recap only summarises ideas the lesson taught, introduces nothing new, and does not ask questions, because the quiz comes after it.

@@ -1,0 +1,137 @@
+topic: Introduction to RAG (Retrieval-Augmented Generation)
+provenance: curated
+aliases:
+  - rag
+  - retrieval-augmented generation
+  - retrieval augmented generation
+
+facts:
+  - id: F1
+    text: RAG stands for Retrieval-Augmented Generation. The term was introduced in a 2020 research paper by Patrick Lewis and colleagues.
+    source: https://arxiv.org/abs/2005.11401
+  - id: F0
+    text: Artificial intelligence (AI) means computer systems that do tasks which normally need human thinking. An AI model is a computer program that has learned patterns from a lot of examples.
+    source: https://arxiv.org/abs/2312.10997
+  - id: F2
+    text: A large language model (LLM) is an AI model trained on very large amounts of text. It generates text by predicting likely next words.
+    source: https://arxiv.org/abs/2312.10997
+  - id: F2A
+    text: A prompt is the text given to an LLM. It can include instructions, background text, and a question.
+    source: https://arxiv.org/abs/2312.10997
+  - id: F3
+    text: An LLM alone answers from what it learned during training. It does not know about events after its training data ends, and it does not know an organisation's private documents unless they are given to it.
+    source: https://arxiv.org/abs/2312.10997
+  - id: F4
+    text: LLMs can produce text that sounds confident but is false or made up. This is called hallucination.
+    source: https://arxiv.org/abs/2202.03629
+  - id: F5
+    text: RAG adds an outside source of knowledge. When a question arrives, the system first finds relevant information in that source and then gives it to the LLM along with the question, so the LLM can base its answer on it.
+    source: https://arxiv.org/abs/2005.11401
+  - id: F6
+    text: The name describes the three steps at question time. Retrieval finds relevant text. Augmentation adds that text to the prompt. Generation is the LLM writing the answer.
+    source: https://arxiv.org/abs/2312.10997
+  - id: F7
+    text: Before questions can be answered, the documents are prepared in a step called indexing. They are collected, split into small pieces called chunks, and stored in a form that can be searched.
+    source: https://arxiv.org/abs/2312.10997
+  - id: F8
+    text: Documents are split into chunks because a model can only take in a limited amount of text at one time, and a small piece is easier to match to a specific question. Chunks that are too large can include unrelated text, and chunks that are too small can lose needed context.
+    source: https://arxiv.org/abs/2401.05856
+  - id: F9
+    text: An embedding is a list of numbers that represents the meaning of a piece of text. Text with similar meaning gets embeddings that are close together, so a search can match meaning and not only the exact words.
+    source: https://arxiv.org/abs/2312.10997
+  - id: F9A
+    text: An embedding model is an AI model that turns text into embeddings.
+    source: https://arxiv.org/abs/2312.10997
+  - id: F10
+    text: A vector database stores embeddings and quickly finds the ones closest to the embedding of a question. A vector database is common in RAG but is not required. Retrieval can also use keyword search or combine both methods.
+    source: https://arxiv.org/abs/2312.10997
+  - id: F11
+    text: At question time, the question is usually turned into an embedding using the same embedding model, and the few closest chunks are returned. These are often called the top-k results.
+    source: https://arxiv.org/abs/2312.10997
+  - id: F12
+    text: The prompt given to the LLM usually contains the retrieved chunks, the user's question, and an instruction to answer using that text.
+    source: https://arxiv.org/abs/2312.10997
+  - id: F13
+    text: RAG does not change or retrain the LLM. To update what the system knows, you update the documents and the index.
+    source: https://arxiv.org/abs/2005.11401
+  - id: F14
+    text: Because the answer is based on retrieved text, a RAG system can show which documents it used, so people can check the answer.
+    source: https://arxiv.org/abs/2312.10997
+  - id: F15
+    text: RAG can reduce hallucination, but it does not remove it. The LLM can still make mistakes even when it is given the right text.
+    source: https://arxiv.org/abs/2401.05856
+  - id: F16
+    text: RAG can fail when the needed information is not in the documents, when retrieval misses the right chunk, or when the LLM does not use the retrieved text correctly. The quality of the answer depends on the quality of the documents and of retrieval.
+    source: https://arxiv.org/abs/2401.05856
+  - id: F17
+    text: Common uses of RAG include answering questions over company documents, customer support assistants, and search tools that answer with sources.
+    source: https://arxiv.org/abs/2312.10997
+
+key_points:
+  - id: K1
+    text: What RAG is, including what the name stands for
+  - id: K2
+    text: Why an LLM alone falls short, covering knowledge limited to its training data, no access to private documents, and hallucination
+  - id: K3
+    text: Why RAG matters, covering answers based on current or private information without retraining the model, and sources that people can check
+  - id: K4
+    text: The preparation stage, in which documents are split into chunks and stored so they can be searched
+  - id: K5
+    text: Embeddings as numbers that capture meaning, which allow search by meaning
+  - id: K6
+    text: The three question-time steps of retrieve, augment, and generate, in that order
+  - id: K7
+    text: The limits of RAG, covering that it reduces but does not remove wrong answers and depends on good documents and good retrieval
+
+abbreviations:
+  RAG: Retrieval-Augmented Generation
+  LLM: large language model
+
+glossary:
+  - term: AI model
+    definition: A computer program that has learned patterns from a lot of examples.
+  - term: embedding model
+    definition: An AI model that turns text into embeddings.
+  - term: RAG (Retrieval-Augmented Generation)
+    definition: A method that finds relevant text and gives it to an LLM along with the question.
+  - term: LLM (large language model)
+    definition: An AI model trained on very large amounts of text that predicts likely next words.
+  - term: prompt
+    definition: The text given to an LLM, which can include instructions, background text, and a question.
+  - term: hallucination
+    definition: When an LLM produces text that sounds confident but is false or made up.
+  - term: chunk
+    definition: A small piece of a document, made so it is easy to search.
+  - term: embedding
+    definition: A list of numbers that represents the meaning of a piece of text.
+  - term: vector database
+    definition: A tool that stores embeddings and quickly finds the ones closest to a question.
+  - term: retrieval
+    definition: The step that finds text relevant to a question.
+  - term: indexing
+    definition: The step that prepares documents so they can be searched.
+  - term: augmentation
+    definition: The step that adds the retrieved text to the prompt.
+  - term: top-k
+    definition: The few closest chunks that a search returns.
+  - term: knowledge base
+    definition: The collection of documents that a system can search.
+
+must_define:
+  - AI model
+  - embedding model
+  - RAG
+  - LLM
+  - prompt
+  - hallucination
+  - chunk
+  - embedding
+  - vector database
+  - retrieval
+
+misconceptions:
+  - RAG removes all hallucination or guarantees correct answers.
+  - RAG retrains the LLM or adds the documents into the model permanently.
+  - RAG requires a vector database.
+  - The LLM searches the documents by itself. In RAG, a separate retrieval step does the search.
+  - Generation happens before retrieval.

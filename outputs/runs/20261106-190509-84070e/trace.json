@@ -1,0 +1,877 @@
+{
+  "run_id": "20261106-190509-84070e",
+  "topic": "Introduction to RAG (Retrieval-Augmented Generation)",
+  "status": "shipped",
+  "rubric_version": 4,
+  "grounding": "curated",
+  "guidelines": [],
+  "evolution_events": [],
+  "usage": {
+    "writer": {
+      "calls": 4,
+      "input_tokens": 13775,
+      "cached_tokens": 0,
+      "output_tokens": 6726,
+      "models": {
+        "google_genai:gemini-3.5-flash-lite": 4
+      }
+    },
+    "judge": {
+      "calls": 12,
+      "input_tokens": 21601,
+      "cached_tokens": 0,
+      "output_tokens": 18419,
+      "models": {
+        "google_genai:gemini-3.5-flash-lite": 12
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "lesson": {
+        "title": "Introduction to Retrieval-Augmented Generation",
+        "sections": [
+          {
+            "role": "intro",
+            "heading": "Welcome to AI and RAG",
+            "body": "Imagine you are in a school library in India, trying to find a rule book. You need a helpful helper to look up facts before you write your answers. Artificial intelligence, or AI, means computer systems that do tasks which normally need human thinking. An AI model is a computer program that has learned patterns from many examples, just like how you learn grammar rules by reading many sentences."
+          },
+          {
+            "role": "what",
+            "heading": "What RAG Means",
+            "body": "RAG stands for Retrieval-Augmented Generation. The term was introduced in a 2020 research paper by Patrick Lewis and colleagues. A large language model, or LLM, is an AI model trained on very large amounts of text. It generates text by predicting likely next words. A prompt is the text given to an LLM, which can include instructions and background text."
+          },
+          {
+            "role": "why",
+            "heading": "Why We Need RAG",
+            "body": "Think of an LLM like a student who has read many books before an exam. It knows a lot, but it has not read your school's new circulars issued today. An LLM alone answers only from what it learned during its training. It does not know about events after its training data ends. It also does not know your private company documents unless you give them to it.\n\nLLMs can sometimes produce text that sounds very confident but is completely false. This problem is called hallucination. RAG brings outside facts so you get better answers without needing to retrain the model."
+          },
+          {
+            "role": "how",
+            "heading": "How RAG Works Step by Step",
+            "body": "Before questions can be answered, documents go through a preparation step called indexing. Think of it like sorting your school study notes into labeled folders before an exam. Documents are split into small pieces called chunks because models can only take limited text. Think of it like cutting a long story into small sentence strips so you can read them easily. An embedding is a list of numbers that represents the meaning of text.\n\nThink of it like a set of test scores that shows how close two subjects are to each other. An embedding model is an AI model that turns text into embeddings. A vector database stores these numbers and quickly finds the closest ones. Think of it like a smart library shelf that groups similar books right next to each other. At question time, retrieval finds relevant text, augmentation adds it to the prompt, and generation writes the final answer."
+          },
+          {
+            "role": "example",
+            "heading": "RAG in Action",
+            "body": "Let us follow a simple question about school library rules. A user asks this question: \n> What is the fine for a late book?\n\nThe system searches the index and finds this text chunk:\n> Fines for returning a library book late are five rupees per day.\n\nThe system builds this exact prompt for the model:\n> Here is the rule: Fines for returning a library book late are five rupees per day. Question: What is the fine for a late book? Answer it using the text.\n\nThe LLM reads the prompt and generates this final answer:\n> The fine for returning a library book late is five rupees per day."
+          },
+          {
+            "role": "limits",
+            "heading": "Limits of RAG",
+            "body": "RAG can reduce wrong answers, but it does not remove them completely. The LLM can still make mistakes even when it is given the right text. RAG can fail if the needed information is missing from your documents. It can also fail if retrieval misses the right chunk or the model fails to use it. The quality of your final answer depends heavily on your documents and your retrieval step."
+          },
+          {
+            "role": "recap",
+            "heading": "Summary and Self-Check",
+            "body": "You have learned that RAG brings outside knowledge together with a language model. You saw how documents are split into chunks and turned into embeddings for easy search. You also learned about retrieval, augmentation, and generation steps. Now test what you know with the questions below."
+          }
+        ],
+        "key_terms": [
+          {
+            "term": "AI model",
+            "definition": "A computer program that has learned patterns from a lot of examples."
+          },
+          {
+            "term": "Large language model (LLM)",
+            "definition": "An AI model trained on very large amounts of text that generates text by predicting next words."
+          },
+          {
+            "term": "Prompt",
+            "definition": "The text given to an LLM, which can include instructions, background text, and a question."
+          },
+          {
+            "term": "Hallucination",
+            "definition": "When an LLM produces text that sounds confident but is false or made up."
+          },
+          {
+            "term": "RAG (Retrieval-Augmented Generation)",
+            "definition": "A method that adds an outside source of knowledge to help an LLM base its answer on facts."
+          },
+          {
+            "term": "Chunk",
+            "definition": "A small piece of a document made during the indexing stage."
+          },
+          {
+            "term": "Embedding",
+            "definition": "A list of numbers that represents the meaning of a piece of text."
+          },
+          {
+            "term": "Embedding model",
+            "definition": "An AI model that turns text into embeddings."
+          },
+          {
+            "term": "Vector database",
+            "definition": "A system that stores embeddings and quickly finds the ones closest to a question."
+          },
+          {
+            "term": "Retrieval",
+            "definition": "The question-time step that finds relevant text in outside sources."
+          },
+          {
+            "term": "indexing",
+            "definition": "The step that prepares documents so they can be searched."
+          },
+          {
+            "term": "augmentation",
+            "definition": "The step that adds the retrieved text to the prompt."
+          }
+        ],
+        "quiz": [
+          {
+            "question": "What do the letters RAG stand for?",
+            "answer": "RAG stands for Retrieval-Augmented Generation."
+          },
+          {
+            "question": "Why does a RAG system split large documents into smaller chunks?",
+            "answer": "Because a model can only take in a limited amount of text at one time, and a small piece is easier to match to a specific question."
+          },
+          {
+            "question": "Suppose a store updates its return policy document with new rules. How can you update a RAG system with these new rules without retraining the LLM?",
+            "answer": "You can update the documents and the index to include the new policy, so the retrieval step brings up the new rules in the prompt."
+          }
+        ]
+      },
+      "report": {
+        "attempt": 1,
+        "lesson_fingerprint": "ee6c7c2ff96f",
+        "rubric_version": 2,
+        "results": [
+          {
+            "check_id": "ACC-1",
+            "dimension": "accuracy",
+            "passed": true,
+            "reason": "No issues; 42 sentences newly verified.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "audit",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "ACC-2",
+            "dimension": "accuracy",
+            "passed": true,
+            "reason": "No issues; 42 sentences newly verified.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "audit",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "ACC-3",
+            "dimension": "accuracy",
+            "passed": true,
+            "reason": "No absolute promises.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "ACC-4",
+            "dimension": "accuracy",
+            "passed": true,
+            "reason": "No invented statistics.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "LANG-1",
+            "dimension": "beginner_language",
+            "passed": true,
+            "reason": "Reading grade is 6.5.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "LANG-2",
+            "dimension": "beginner_language",
+            "passed": true,
+            "reason": "Average sentence is 12.9 words.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "LANG-3",
+            "dimension": "beginner_language",
+            "passed": true,
+            "reason": "Uncommon words are 1.0% of the text.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "LANG-4",
+            "dimension": "beginner_language",
+            "passed": true,
+            "reason": "All paragraphs are short.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "BEG-1",
+            "dimension": "beginner_language",
+            "passed": true,
+            "reason": "The lesson introduces all concepts from scratch and explains technical terms simply without assuming prior knowledge.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "BEG-2",
+            "dimension": "beginner_language",
+            "passed": true,
+            "reason": "The examples use familiar Indian contexts like school libraries and rupees.",
+            "fix": "",
+            "evidence": [
+              "Imagine you are in a school library in India, trying to find a rule book.",
+              "Fines for returning a library book late are five rupees per day."
+            ],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "EX-1",
+            "dimension": "examples",
+            "passed": true,
+            "reason": "The worked example clearly follows a single question through all the required steps with exact quotes for question, text found, prompt, and final answer.",
+            "fix": "",
+            "evidence": [
+              "What is the fine for a late book?",
+              "Fines for returning a library book late are five rupees per day.",
+              "Here is the rule: Fines for returning a library book late are five rupees per day. Question: What is the fine for a late book? Answer it using the text.",
+              "The fine for returning a library book late is five rupees per day."
+            ],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "EX-2",
+            "dimension": "examples",
+            "passed": false,
+            "reason": "The section explaining what the topic is does not contain any concrete example or analogy.",
+            "fix": "Add a concrete example or analogy to the 'what' section to explain the concept.",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "JAR-1",
+            "dimension": "clarity",
+            "passed": true,
+            "reason": "All technical terms used are in the key words list.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "JAR-2",
+            "dimension": "clarity",
+            "passed": false,
+            "reason": "The term RAG is used in the title before it is defined, and when it is introduced, it is only expanded into its full form rather than explained in plain, simple words.",
+            "fix": "Explain what Retrieval-Augmented Generation means in simple words the very first time RAG is mentioned.",
+            "evidence": [
+              "Welcome to AI and RAG",
+              "RAG stands for Retrieval-Augmented Generation."
+            ],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "JAR-3",
+            "dimension": "clarity",
+            "passed": true,
+            "reason": "12 key words with short definitions.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "JAR-4",
+            "dimension": "clarity",
+            "passed": true,
+            "reason": "All abbreviations are spelled out.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "COV-1",
+            "dimension": "coverage",
+            "passed": false,
+            "reason": "K3 (Why RAG matters, covering answers based on current or private information without retraining the model, and sources that people can check): The lesson explains that RAG provides outside facts without retraining, but it does not cover sources that people can check. | K7 (The limits of RAG, covering that it reduces but does not remove wrong answers and depends on good documents and good retrieval): its quote is not in the lesson sections.",
+            "fix": "Teach each listed key point in the lesson body.",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "audit",
+            "covered_quotes": {
+              "K1": "RAG stands for Retrieval-Augmented Generation.",
+              "K2": "An LLM alone answers only from what it learned during its training. It does not know about events after its training data ends. It also does not know your private company documents unless you give them to it. LLMs can sometimes produce text that sounds very confident but is completely false. This problem is called hallucination.",
+              "K4": "Before questions can be answered, documents go through a preparation step called indexing. Think of it like sorting your school study notes into labeled folders before an exam. Documents are split into small pieces called chunks because models can only take limited text.",
+              "K5": "An embedding is a list of numbers that represents the meaning of text.",
+              "K6": "At question time, retrieval finds relevant text, augmentation adds it to the prompt, and generation writes the final answer."
+            }
+          },
+          {
+            "check_id": "COV-2",
+            "dimension": "coverage",
+            "passed": true,
+            "reason": "All required sections are present.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "COV-3",
+            "dimension": "coverage",
+            "passed": true,
+            "reason": "3 complete questions.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "FLOW-1",
+            "dimension": "flow",
+            "passed": true,
+            "reason": "Sections in order; 606 words.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "FLOW-2",
+            "dimension": "flow",
+            "passed": false,
+            "reason": "The lesson introduces embeddings, embedding models, and vector databases in the '[how] How RAG Works Step by Step' section without defining them first, or explaining them simply before using the terms.",
+            "fix": "Explain what embeddings, embedding models, and vector databases are in simple terms before using them in the step-by-step section.",
+            "evidence": [
+              "An embedding is a list of numbers that represents the meaning of text.",
+              "Think of it like a set of test scores that shows how close two subjects are to each other. An embedding model is an AI model that turns text into embeddings."
+            ],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "FLOW-3",
+            "dimension": "flow",
+            "passed": true,
+            "reason": "All quiz questions can be answered using the lesson text, the answers match the lesson content, and the third question asks the learner to apply an idea rather than just repeat a definition.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "FLOW-4",
+            "dimension": "flow",
+            "passed": true,
+            "reason": "The recap section only summarizes ideas previously taught (RAG, chunks, embeddings, retrieval, augmentation, generation) and does not introduce any new concepts.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          }
+        ],
+        "complete": true,
+        "reused_checks": []
+      },
+      "revision": null,
+      "seconds": 10.2,
+      "code_fixes": [
+        "Split 1 long paragraph(s), with no words changed",
+        "Added to key words from the glossary: indexing, augmentation",
+        "Split 1 long paragraph(s), with no words changed"
+      ],
+      "repaired_rule_failures": [
+        {
+          "check_id": "FLOW-1",
+          "dimension": "flow",
+          "passed": false,
+          "reason": "560 words, needs 600-1500.",
+          "fix": "Add more teaching, with a further example or explanation in the thinnest sections.",
+          "evidence": [],
+          "evidence_verified": true,
+          "source": "deterministic",
+          "covered_quotes": {}
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "lesson": {
+        "title": "Introduction to Retrieval-Augmented Generation",
+        "sections": [
+          {
+            "role": "intro",
+            "heading": "Welcome to AI and RAG",
+            "body": "Imagine you are in a school library in India, trying to find a rule book. You need a helpful helper to look up facts before you write your answers. Retrieval-Augmented Generation, or RAG, is like having an open-book exam where you can look up facts from outside notes. Artificial intelligence, or AI, means computer systems that do tasks which normally need human thinking. An AI model is a computer program that has learned patterns from many examples, just like how you learn grammar rules by reading many sentences."
+          },
+          {
+            "role": "what",
+            "heading": "What RAG Means",
+            "body": "RAG stands for Retrieval-Augmented Generation. Think of it like looking up an answer in your textbook before speaking, instead of only guessing from memory. The term was introduced in a 2020 research paper by Patrick Lewis and colleagues. A large language model, or LLM, is an AI model trained on very large amounts of text. It generates text by predicting likely next words.\n\nA prompt is the text given to an LLM, which can include instructions and background text."
+          },
+          {
+            "role": "why",
+            "heading": "Why We Need RAG",
+            "body": "Think of an LLM like a student who has read many books before an exam. It knows a lot, but it has not read your school's new circulars issued today. An LLM alone answers only from what it learned during its training. It does not know about events after its training data ends. It also does not know your private company documents unless you give them to it.\n\nLLMs can sometimes produce text that sounds very confident but is completely false. This problem is called hallucination. RAG brings outside facts so you get better answers without needing to retrain the model. Because the answer is based on retrieved text, a RAG system can show which documents it used, so people can check the answer."
+          },
+          {
+            "role": "how",
+            "heading": "How RAG Works Step by Step",
+            "body": "Before questions can be answered, documents go through a preparation step called indexing. Think of it like sorting your school study notes into labeled folders before an exam. Documents are split into small pieces called chunks because models can only take limited text. Think of it like cutting a long story into small sentence strips so you can read them easily. An embedding is a list of numbers that represents the meaning of text.\n\nThink of it like a set of test scores that shows how close two subjects are to each other, where similar topics get close scores. An embedding model is an AI model that turns text into these meaning numbers. A vector database is a system that stores these numbers and quickly finds the closest ones. Think of it like a smart library shelf that groups similar books right next to each other so you can find them fast. At question time, retrieval finds relevant text, augmentation adds it to the prompt, and generation writes the final answer."
+          },
+          {
+            "role": "example",
+            "heading": "RAG in Action",
+            "body": "Let us follow a simple question about school library rules. A user asks this question: \n> What is the fine for a late book?\n\nThe system searches the index and finds this text chunk:\n> Fines for returning a library book late are five rupees per day.\n\nThe system builds this exact prompt for the model:\n> Here is the rule: Fines for returning a library book late are five rupees per day. Question: What is the fine for a late book? Answer it using the text.\n\nThe LLM reads the prompt and generates this final answer:\n> The fine for returning a library book late is five rupees per day."
+          },
+          {
+            "role": "limits",
+            "heading": "Limits of RAG",
+            "body": "RAG can reduce wrong answers, but it does not remove them completely. The LLM can still make mistakes even when it is given the right text. RAG can fail if the needed information is missing from your documents. It can also fail if retrieval misses the right chunk or the model fails to use it. The quality of your final answer depends heavily on your documents and your retrieval step."
+          },
+          {
+            "role": "recap",
+            "heading": "Summary and Self-Check",
+            "body": "You have learned that RAG brings outside knowledge together with a language model. You saw how documents are split into chunks and turned into embeddings for easy search. You also learned about retrieval, augmentation, and generation steps. Now test what you know with the questions below."
+          }
+        ],
+        "key_terms": [
+          {
+            "term": "AI model",
+            "definition": "A computer program that has learned patterns from a lot of examples."
+          },
+          {
+            "term": "Large language model (LLM)",
+            "definition": "An AI model trained on very large amounts of text that generates text by predicting next words."
+          },
+          {
+            "term": "Prompt",
+            "definition": "The text given to an LLM, which can include instructions, background text, and a question."
+          },
+          {
+            "term": "Hallucination",
+            "definition": "When an LLM produces text that sounds confident but is false or made up."
+          },
+          {
+            "term": "RAG (Retrieval-Augmented Generation)",
+            "definition": "A method that adds an outside source of knowledge to help an LLM base its answer on facts."
+          },
+          {
+            "term": "Chunk",
+            "definition": "A small piece of a document made during the indexing stage."
+          },
+          {
+            "term": "Embedding",
+            "definition": "A list of numbers that represents the meaning of a piece of text."
+          },
+          {
+            "term": "Embedding model",
+            "definition": "An AI model that turns text into embeddings."
+          },
+          {
+            "term": "Vector database",
+            "definition": "A system that stores embeddings and quickly finds the ones closest to a question."
+          },
+          {
+            "term": "Retrieval",
+            "definition": "The question-time step that finds relevant text in outside sources."
+          },
+          {
+            "term": "indexing",
+            "definition": "The step that prepares documents so they can be searched."
+          },
+          {
+            "term": "augmentation",
+            "definition": "The step that adds the retrieved text to the prompt."
+          }
+        ],
+        "quiz": [
+          {
+            "question": "What do the letters RAG stand for?",
+            "answer": "RAG stands for Retrieval-Augmented Generation."
+          },
+          {
+            "question": "Why does a RAG system split large documents into smaller chunks?",
+            "answer": "Because a model can only take in a limited amount of text at one time, and a small piece is easier to match to a specific question."
+          },
+          {
+            "question": "Suppose a store updates its return policy document with new rules. How can you update a RAG system with these new rules without retraining the LLM?",
+            "answer": "You can update the documents and the index to include the new policy, so the retrieval step brings up the new rules in the prompt."
+          }
+        ]
+      },
+      "report": {
+        "attempt": 2,
+        "lesson_fingerprint": "095591680f66",
+        "rubric_version": 2,
+        "results": [
+          {
+            "check_id": "ACC-1",
+            "dimension": "accuracy",
+            "passed": true,
+            "reason": "No issues; 20 sentences newly verified.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "audit",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "ACC-2",
+            "dimension": "accuracy",
+            "passed": true,
+            "reason": "No issues; 20 sentences newly verified.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "audit",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "ACC-3",
+            "dimension": "accuracy",
+            "passed": true,
+            "reason": "No absolute promises.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "ACC-4",
+            "dimension": "accuracy",
+            "passed": true,
+            "reason": "No invented statistics.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "LANG-1",
+            "dimension": "beginner_language",
+            "passed": true,
+            "reason": "Reading grade is 6.8.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "LANG-2",
+            "dimension": "beginner_language",
+            "passed": true,
+            "reason": "Average sentence is 13.7 words.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "LANG-3",
+            "dimension": "beginner_language",
+            "passed": true,
+            "reason": "Uncommon words are 0.9% of the text.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "LANG-4",
+            "dimension": "beginner_language",
+            "passed": true,
+            "reason": "All paragraphs are short.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "BEG-1",
+            "dimension": "beginner_language",
+            "passed": true,
+            "reason": "The lesson builds concepts from the ground up using very simple terms and short sentences, avoiding advanced technical or mathematical jargon.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "BEG-2",
+            "dimension": "beginner_language",
+            "passed": true,
+            "reason": "The text uses familiar everyday Indian contexts like school libraries, textbooks, study notes, and exams, which are well-suited for a young learner in India.",
+            "fix": "",
+            "evidence": [
+              "Imagine you are in a school library in India, trying to find a rule book.",
+              "Think of it like looking up an answer in your textbook before speaking, instead of only guessing from memory.",
+              "Think of it like sorting your school study notes into labeled folders before an exam."
+            ],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "EX-1",
+            "dimension": "examples",
+            "passed": true,
+            "reason": "The worked example clearly shows the question, the found text, the prompt, and the final answer.",
+            "fix": "",
+            "evidence": [
+              "A user asks this question: > What is the fine for a late book?",
+              "The system searches the index and finds this text chunk: > Fines for returning a library book late are five rupees per day.",
+              "The system builds this exact prompt for the model: > Here is the rule: Fines for returning a library book late are five rupees per day. Question: What is the fine for a late book? Answer it using the text.",
+              "The LLM reads the prompt and generates this final answer: > The fine for returning a library book late is five rupees per day."
+            ],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "EX-2",
+            "dimension": "examples",
+            "passed": true,
+            "reason": "The what, why, and how sections all provide clear, accurate analogies that explain the concepts correctly.",
+            "fix": "",
+            "evidence": [
+              "Think of it like looking up an answer in your textbook before speaking, instead of only guessing from memory.",
+              "Think of an LLM like a student who has read many books before an exam.",
+              "Think of it like sorting your school study notes into labeled folders before an exam."
+            ],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "JAR-1",
+            "dimension": "clarity",
+            "passed": true,
+            "reason": "All technical terms used are in the key words list.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "JAR-2",
+            "dimension": "clarity",
+            "passed": true,
+            "reason": "Every technical term is clearly explained in simple words right where it first appears in the lesson.",
+            "fix": "",
+            "evidence": [
+              "Retrieval-Augmented Generation, or RAG, is like having an open-book exam where you can look up facts from outside notes.",
+              "An embedding is a list of numbers that represents the meaning of text."
+            ],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "JAR-3",
+            "dimension": "clarity",
+            "passed": true,
+            "reason": "12 key words with short definitions.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "JAR-4",
+            "dimension": "clarity",
+            "passed": true,
+            "reason": "All abbreviations are spelled out.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "COV-1",
+            "dimension": "coverage",
+            "passed": true,
+            "reason": "All 7 key points are taught.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "audit",
+            "covered_quotes": {
+              "K1": "RAG stands for Retrieval-Augmented Generation.",
+              "K2": "An LLM alone answers only from what it learned during its training. It does not know about events after its training data ends. It also does not know your private company documents unless you give them to it. LLMs can sometimes produce text that sounds very confident but is completely false. This problem is called hallucination.",
+              "K4": "Before questions can be answered, documents go through a preparation step called indexing. Think of it like sorting your school study notes into labeled folders before an exam. Documents are split into small pieces called chunks because models can only take limited text.",
+              "K5": "An embedding is a list of numbers that represents the meaning of text.",
+              "K6": "At question time, retrieval finds relevant text, augmentation adds it to the prompt, and generation writes the final answer.",
+              "K3": "RAG brings outside facts so you get better answers without needing to retrain the model. Because the answer is based on retrieved text, a RAG system can show which documents it used, so people can check the answer.",
+              "K7": "RAG can reduce wrong answers, but it does not remove them completely. The LLM can still make mistakes even when it is given the right text. RAG can fail if the needed information is missing from your documents. It can also fail if retrieval misses the right chunk or the model fails to use it. The quality of your final answer depends heavily on your documents and your retrieval step."
+            }
+          },
+          {
+            "check_id": "COV-2",
+            "dimension": "coverage",
+            "passed": true,
+            "reason": "All required sections are present.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "COV-3",
+            "dimension": "coverage",
+            "passed": true,
+            "reason": "3 complete questions.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "FLOW-1",
+            "dimension": "flow",
+            "passed": true,
+            "reason": "Sections in order; 687 words.",
+            "fix": "",
+            "evidence": [],
+            "evidence_verified": true,
+            "source": "deterministic",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "FLOW-2",
+            "dimension": "flow",
+            "passed": true,
+            "reason": "Every section builds logically on previous ones, introducing terms like LLM, chunks, and embeddings right when they are needed without using unexplained terms.",
+            "fix": "",
+            "evidence": [
+              "A large language model, or LLM, is an AI model trained on very large amounts of text."
+            ],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "FLOW-3",
+            "dimension": "flow",
+            "passed": true,
+            "reason": "All quiz questions can be answered directly from the lesson text, and the third question successfully requires applying the concept of updating documents without retraining.",
+            "fix": "",
+            "evidence": [
+              "RAG stands for Retrieval-Augmented Generation.",
+              "Documents are split into small pieces called chunks because models can only take limited text."
+            ],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          },
+          {
+            "check_id": "FLOW-4",
+            "dimension": "flow",
+            "passed": true,
+            "reason": "The recap accurately summarizes RAG, chunks, embeddings, and retrieval steps without introducing any new concepts.",
+            "fix": "",
+            "evidence": [
+              "You have learned that RAG brings outside knowledge together with a language model. You saw how documents are split into chunks and turned into embeddings for easy search."
+            ],
+            "evidence_verified": true,
+            "source": "judge",
+            "covered_quotes": {}
+          }
+        ],
+        "complete": true,
+        "reused_checks": []
+      },
+      "revision": {
+        "base_attempt": 1,
+        "rolled_back": false,
+        "sections_changed": [
+          "intro",
+          "what",
+          "why",
+          "how"
+        ],
+        "key_terms_changed": false,
+        "quiz_changed": false,
+        "words_added": 82,
+        "words_removed": 1,
+        "notes": [
+          {
+            "check_id": "EX-2",
+            "change": "Added a concrete analogy comparing RAG to an open-book exam in the 'what' section."
+          },
+          {
+            "check_id": "JAR-2",
+            "change": "Introduced the simple open-book exam comparison in the intro section the very first time RAG is mentioned."
+          },
+          {
+            "check_id": "COV-1",
+            "change": "Added the fact that RAG shows which documents it used so people can check the answer to the 'why' section to fully cover K3."
+          },
+          {
+            "check_id": "FLOW-2",
+            "change": "Defined embeddings, embedding models, and vector databases with simple explanations and daily-life analogies in the 'how' section before using them in the steps."
+          }
+        ]
+      },
+      "seconds": 6.9,
+      "code_fixes": [
+        "Split 3 long paragraph(s), with no words changed"
+      ],
+      "repaired_rule_failures": []
+    }
+  ]
+}

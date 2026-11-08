@@ -1,0 +1,123 @@
+{
+  "caught": 16,
+  "total": 17,
+  "recall": 0.9411764705882353,
+  "clean_lesson_failures": [],
+  "outcomes": [
+    {
+      "defect": "false-claim",
+      "expected_check": "ACC-1",
+      "caught": true,
+      "reason": "\"RAG works by retraining the LLM with your documents.\": States the misconception that RAG retrains the LLM. | \"After this, the documents become a permanent part of the model.\": States the misconception that documents become a permanent part of the model."
+    },
+    {
+      "defect": "invented-claim",
+      "expected_check": "ACC-2",
+      "caught": false,
+      "reason": "No issues; 43 sentences newly verified."
+    },
+    {
+      "defect": "absolute-promise",
+      "expected_check": "ACC-3",
+      "caught": true,
+      "reason": "Absolute promises found: ['always correct']."
+    },
+    {
+      "defect": "invented-statistic",
+      "expected_check": "ACC-4",
+      "caught": true,
+      "reason": "Statistics that the fact sheet does not provide: ['95 percent']."
+    },
+    {
+      "defect": "hard-language",
+      "expected_check": "LANG-1",
+      "caught": true,
+      "reason": "Reading grade is 40.9; the limit is 8.0."
+    },
+    {
+      "defect": "assumes-knowledge",
+      "expected_check": "BEG-1",
+      "caught": true,
+      "reason": "The lesson assumes prior knowledge of linear algebra, Python, and gradient descent, which contradicts the background of a learner with no technical background."
+    },
+    {
+      "defect": "foreign-examples",
+      "expected_check": "BEG-2",
+      "caught": true,
+      "reason": "The analogies rely on American cultural references like the Super Bowl and Thanksgiving dinner instead of everyday life in India."
+    },
+    {
+      "defect": "vague-example",
+      "expected_check": "EX-1",
+      "caught": true,
+      "reason": "The worked example is too generic and lacks a specific case with actual content from start to finish."
+    },
+    {
+      "defect": "unlisted-jargon",
+      "expected_check": "JAR-1",
+      "caught": true,
+      "reason": "Technical terms used without a key word entry: ['token', 'transformer']."
+    },
+    {
+      "defect": "unexplained-jargon",
+      "expected_check": "JAR-2",
+      "caught": true,
+      "reason": "The technical terms cosine similarity, dense vectors, and bi-encoder are used in the introduction without any plain-English explanation."
+    },
+    {
+      "defect": "unexpanded-abbreviation",
+      "expected_check": "JAR-4",
+      "caught": true,
+      "reason": "Abbreviations never spelled out in the lesson body: ['LLM (large language model)']."
+    },
+    {
+      "defect": "drops-limits",
+      "expected_check": "COV-1",
+      "caught": true,
+      "reason": "K4 (The preparation stage, in which documents are split into chunks and stored so they can be searched): The lesson explains that documents are split into chunks, but it does not state that the chunks themselves are stored to be searched (it states that embeddings/numbers are stored in a vector database). | K7 (The limits of RAG, covering that it reduces but does not remove wrong answers and depends on good documents and good retrieval): The lesson's limits section only mentions that RAG is a useful tool that teams enjoy, and does not cover that it reduces but does not remove wrong answers or that it depends on good documents and good retrieval."
+    },
+    {
+      "defect": "drops-section",
+      "expected_check": "COV-2",
+      "caught": true,
+      "reason": "Each role must appear exactly once. Wrong count for: ['why']."
+    },
+    {
+      "defect": "scrambled-order",
+      "expected_check": "FLOW-1",
+      "caught": true,
+      "reason": "sections are in the order ['recap', 'limits', 'example', 'how', 'why', 'what', 'intro']."
+    },
+    {
+      "defect": "forward-dependency",
+      "expected_check": "FLOW-2",
+      "caught": true,
+      "reason": "The introductory section uses technical terms like 'prompt' and 'LLM' before they have been defined, which would confuse a beginner learner reading from the start."
+    },
+    {
+      "defect": "wrong-quiz-answer",
+      "expected_check": "FLOW-3",
+      "caught": true,
+      "reason": "The answer to the first question is factually incorrect according to the lesson, which states that retrieval happens before generation."
+    },
+    {
+      "defect": "new-idea-in-recap",
+      "expected_check": "FLOW-4",
+      "caught": true,
+      "reason": "The recap section introduces new technical terms, specifically 'reranking' and 'query rewriting', which were not defined or explained anywhere earlier in the lesson."
+    }
+  ],
+  "note_review": [],
+  "usage": {
+    "judge": {
+      "calls": 17,
+      "input_tokens": 32418,
+      "cached_tokens": 0,
+      "output_tokens": 21469,
+      "models": {
+        "google_genai:gemini-3.5-flash-lite": 13,
+        "google_genai:gemini-3.1-flash-lite": 4
+      }
+    }
+  }
+}

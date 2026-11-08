@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lessonproof"
+version = "1.0.0"
+description = "Self-evaluating agentic generator for beginner lessons"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "langchain>=1.0",
+    "langchain-core>=1.0",
+    "langgraph>=1.0",
+    "pydantic>=2.8",
+    "pydantic-settings>=2.4",
+    "python-dotenv>=1.0",
+    "pyyaml>=6.0",
+    "rich>=13.7",
+    "textstat>=0.7.13",
+    "typer>=0.12",
+    "uvicorn>=0.30",
+    "wordfreq>=3.1",
+]
+
+[project.optional-dependencies]
+anthropic = ["langchain-anthropic>=1.0"]
+openai = ["langchain-openai>=1.0"]
+google = ["langchain-google-genai>=2.0"]
+groq = ["langchain-groq>=1.0"]
+ollama = ["langchain-ollama>=1.0"]
+dev = ["ruff>=0.6"]
+
+[project.scripts]
+lessonproof = "lessonproof.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+lessonproof = ["prompts/*.md", "rubric/*.yaml", "knowledge/*.yaml"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["typer.Argument", "typer.Option"]

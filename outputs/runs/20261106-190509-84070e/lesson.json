@@ -1,0 +1,104 @@
+{
+  "title": "Introduction to Retrieval-Augmented Generation",
+  "sections": [
+    {
+      "role": "intro",
+      "heading": "Welcome to AI and RAG",
+      "body": "Imagine you are in a school library in India, trying to find a rule book. You need a helpful helper to look up facts before you write your answers. Retrieval-Augmented Generation, or RAG, is like having an open-book exam where you can look up facts from outside notes. Artificial intelligence, or AI, means computer systems that do tasks which normally need human thinking. An AI model is a computer program that has learned patterns from many examples, just like how you learn grammar rules by reading many sentences."
+    },
+    {
+      "role": "what",
+      "heading": "What RAG Means",
+      "body": "RAG stands for Retrieval-Augmented Generation. Think of it like looking up an answer in your textbook before speaking, instead of only guessing from memory. The term was introduced in a 2020 research paper by Patrick Lewis and colleagues. A large language model, or LLM, is an AI model trained on very large amounts of text. It generates text by predicting likely next words.\n\nA prompt is the text given to an LLM, which can include instructions and background text."
+    },
+    {
+      "role": "why",
+      "heading": "Why We Need RAG",
+      "body": "Think of an LLM like a student who has read many books before an exam. It knows a lot, but it has not read your school's new circulars issued today. An LLM alone answers only from what it learned during its training. It does not know about events after its training data ends. It also does not know your private company documents unless you give them to it.\n\nLLMs can sometimes produce text that sounds very confident but is completely false. This problem is called hallucination. RAG brings outside facts so you get better answers without needing to retrain the model. Because the answer is based on retrieved text, a RAG system can show which documents it used, so people can check the answer."
+    },
+    {
+      "role": "how",
+      "heading": "How RAG Works Step by Step",
+      "body": "Before questions can be answered, documents go through a preparation step called indexing. Think of it like sorting your school study notes into labeled folders before an exam. Documents are split into small pieces called chunks because models can only take limited text. Think of it like cutting a long story into small sentence strips so you can read them easily. An embedding is a list of numbers that represents the meaning of text.\n\nThink of it like a set of test scores that shows how close two subjects are to each other, where similar topics get close scores. An embedding model is an AI model that turns text into these meaning numbers. A vector database is a system that stores these numbers and quickly finds the closest ones. Think of it like a smart library shelf that groups similar books right next to each other so you can find them fast. At question time, retrieval finds relevant text, augmentation adds it to the prompt, and generation writes the final answer."
+    },
+    {
+      "role": "example",
+      "heading": "RAG in Action",
+      "body": "Let us follow a simple question about school library rules. A user asks this question: \n> What is the fine for a late book?\n\nThe system searches the index and finds this text chunk:\n> Fines for returning a library book late are five rupees per day.\n\nThe system builds this exact prompt for the model:\n> Here is the rule: Fines for returning a library book late are five rupees per day. Question: What is the fine for a late book? Answer it using the text.\n\nThe LLM reads the prompt and generates this final answer:\n> The fine for returning a library book late is five rupees per day."
+    },
+    {
+      "role": "limits",
+      "heading": "Limits of RAG",
+      "body": "RAG can reduce wrong answers, but it does not remove them completely. The LLM can still make mistakes even when it is given the right text. RAG can fail if the needed information is missing from your documents. It can also fail if retrieval misses the right chunk or the model fails to use it. The quality of your final answer depends heavily on your documents and your retrieval step."
+    },
+    {
+      "role": "recap",
+      "heading": "Summary and Self-Check",
+      "body": "You have learned that RAG brings outside knowledge together with a language model. You saw how documents are split into chunks and turned into embeddings for easy search. You also learned about retrieval, augmentation, and generation steps. Now test what you know with the questions below."
+    }
+  ],
+  "key_terms": [
+    {
+      "term": "AI model",
+      "definition": "A computer program that has learned patterns from a lot of examples."
+    },
+    {
+      "term": "Large language model (LLM)",
+      "definition": "An AI model trained on very large amounts of text that generates text by predicting next words."
+    },
+    {
+      "term": "Prompt",
+      "definition": "The text given to an LLM, which can include instructions, background text, and a question."
+    },
+    {
+      "term": "Hallucination",
+      "definition": "When an LLM produces text that sounds confident but is false or made up."
+    },
+    {
+      "term": "RAG (Retrieval-Augmented Generation)",
+      "definition": "A method that adds an outside source of knowledge to help an LLM base its answer on facts."
+    },
+    {
+      "term": "Chunk",
+      "definition": "A small piece of a document made during the indexing stage."
+    },
+    {
+      "term": "Embedding",
+      "definition": "A list of numbers that represents the meaning of a piece of text."
+    },
+    {
+      "term": "Embedding model",
+      "definition": "An AI model that turns text into embeddings."
+    },
+    {
+      "term": "Vector database",
+      "definition": "A system that stores embeddings and quickly finds the ones closest to a question."
+    },
+    {
+      "term": "Retrieval",
+      "definition": "The question-time step that finds relevant text in outside sources."
+    },
+    {
+      "term": "indexing",
+      "definition": "The step that prepares documents so they can be searched."
+    },
+    {
+      "term": "augmentation",
+      "definition": "The step that adds the retrieved text to the prompt."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What do the letters RAG stand for?",
+      "answer": "RAG stands for Retrieval-Augmented Generation."
+    },
+    {
+      "question": "Why does a RAG system split large documents into smaller chunks?",
+      "answer": "Because a model can only take in a limited amount of text at one time, and a small piece is easier to match to a specific question."
+    },
+    {
+      "question": "Suppose a store updates its return policy document with new rules. How can you update a RAG system with these new rules without retraining the LLM?",
+      "answer": "You can update the documents and the index to include the new policy, so the retrieval step brings up the new rules in the prompt."
+    }
+  ]
+}
